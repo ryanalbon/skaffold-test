@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-bravo
+  labels:
+    project: skaffold-test
+    app: service-bravo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-bravo
+  template:
+    metadata:
+      name: service-bravo
+      labels:
+        project: skaffold-test
+        app: service-bravo
+    spec:
+      containers:
+      - name: service-bravo
+        image: service-bravo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-bravo
+  labels:
+    project: skaffold-test
+    app: service-bravo
+spec:
+  type: ClusterIP
+  selector:
+    app: service-bravo
+  ports:
+  - protocol: TCP
+    targetPort: 8080
+    port: 8080

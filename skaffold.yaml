@@ -6,7 +6,10 @@ build:
   artifacts:
   - image: service-alpha
     context: service-alpha
+  - image: service-bravo
+    context: service-bravo
 deploy:
   kubectl:
     manifests:
     - service-alpha/k8s.yaml
+    - service-bravo/k8s.yaml
