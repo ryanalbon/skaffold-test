@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-alpha
+  labels:
+    project: skaffold-test
+    app: service-alpha
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-alpha
+  template:
+    metadata:
+      name: service-alpha
+      labels:
+        project: skaffold-test
+        app: service-alpha
+    spec:
+      containers:
+      - name: service-alpha
+        image: service-alpha
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-alpha
+  labels:
+    project: skaffold-test
+    app: service-alpha
+spec:
+  type: ClusterIP
+  selector:
+    app: service-alpha
+  ports:
+  - protocol: TCP
+    targetPort: 8080
+    port: 8080

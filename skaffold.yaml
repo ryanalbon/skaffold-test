@@ -1,0 +1,12 @@
+apiVersion: skaffold/v1beta15
+kind: Config
+metadata:
+  name: skaffold-test
+build:
+  artifacts:
+  - image: service-alpha
+    context: service-alpha
+deploy:
+  kubectl:
+    manifests:
+    - service-alpha/k8s.yaml
